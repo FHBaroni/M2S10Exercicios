@@ -36,11 +36,21 @@ public class ArtistaRepositorio
         _artistas.Remove(artistaExistente);
     }
 
-    public List<Artista> ObterTodos()
+    public List<Artista> ObterTodos(string filtro)
     {
+        if (!string.IsNullOrEmpty(filtro))
+            return _artistas
+                .Where(a => a.Nome.Contains(filtro) || a.Banda.Contains(filtro))
+                .ToList();
+        {
+
+        }
         return _artistas;
     }
 
-
+    public Artista ObterPorId(int artistaId)
+    {
+        return _artistas.FirstOrDefault(a => a.Id == artistaId);
+    }
 }
 

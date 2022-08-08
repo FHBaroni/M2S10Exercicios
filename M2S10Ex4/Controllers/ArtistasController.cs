@@ -16,11 +16,13 @@ namespace M2S10Ex4.Controllers
         {
             _artistaRepositorio = repositorio;
         }
-
+        //GET api/artista?nome
         [HttpGet]
-        public ActionResult<Artista> Get()
+        public ActionResult<Artista> Get(
+            [FromQuery] string filtro
+            )
         {
-            return Ok(_artistaRepositorio.ObterTodos());
+            return Ok(_artistaRepositorio.ObterTodos(filtro));
         }
 
         [HttpPost]
